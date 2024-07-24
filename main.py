@@ -1,39 +1,35 @@
 from turtle import Screen
 import time
 from player import Player
-from car import Car
+from car_manager import CarManager
 from scoreboard import Scoreboard
-
-TIME = 0.3
 
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
 
-turtle = Player()
-cars = []
+player = Player()
+car_manager = CarManager()
 scoreboard = Scoreboard()
 
 game_is_on = True
 
 screen.listen()
-screen.onkey(fun=turtle.move, key='Up')
+screen.onkey(fun=player.move, key='Up')
 
 while game_is_on:
-    time.sleep(TIME)
+    time.sleep(0.1)
     screen.update()
-    car = Car()
-    cars.append(car)
 
-    for car in cars:
-        car.move()
+    car_manager.create_car()
+    car_manager.move_cars()
 
-    if turtle.ycor() > 285:
-        turtle.goto(x=0, y=-280)
+    if player.ycor() > 285:
+        player.goto(x=0, y=-280)
         scoreboard.update()
 
-    for car in cars:
-        if turtle.distance(car) < 20:
+    for car in car_manager.all_cars:
+        if player.distance(car) < 20:
             game_is_on = False
             scoreboard.game_over()
 
