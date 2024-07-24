@@ -28,6 +28,7 @@ while game_is_on:
         player.got_to_start()
         scoreboard.add_score()
         scoreboard.show_score()
+        car_manager.increase_speed()
 
     for car in car_manager.all_cars:
         if car.distance(player) < 20:
