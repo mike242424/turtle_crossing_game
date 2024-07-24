@@ -12,4 +12,7 @@ class Player(Turtle):
         self.setheading(90)
         self.showturtle()
 
+    def move(self):
+        self.forward(10)
+
 
