@@ -15,7 +15,8 @@ scoreboard = Scoreboard()
 game_is_on = True
 
 screen.listen()
-screen.onkey(fun=player.move, key='Up')
+screen.onkey(fun=player.move_up, key='Up')
+screen.onkey(fun=player.move_back, key='Down')
 
 while game_is_on:
     time.sleep(0.1)
